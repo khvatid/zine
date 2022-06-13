@@ -1,11 +1,14 @@
 package com.to_panelka.zine.components
 
+import androidx.compose.runtime.mutableStateOf
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
+import com.arkivanov.decompose.router.bringToFront
 import com.arkivanov.decompose.router.router
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
+import com.to_panelka.zine.ui.Screen
 import com.to_panelka.zine.util.Content
 import com.to_panelka.zine.util.asContent
 
@@ -18,7 +21,23 @@ class RootComponent(
         childFactory = ::createChild
     )
     val routerState = router.state
+    val screen = Screen.values().toList()
+    val currentScreen = mutableStateOf("Schedule")
 
+    fun onClickRail(name: String) {
+        currentScreen.value = name
+        when (name) {
+            "Profile" -> {
+                router.bringToFront(RootConfiguration.Profile)
+            }
+            "Students" -> {
+                router.bringToFront(RootConfiguration.Students)
+            }
+            "Schedule" -> {
+                router.bringToFront(RootConfiguration.Schedule)
+            }
+        }
+    }
 
 
     private fun createChild(configuration: RootConfiguration, context: ComponentContext): Content =
