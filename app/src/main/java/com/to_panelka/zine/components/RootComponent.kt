@@ -8,7 +8,7 @@ import com.arkivanov.decompose.router.router
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.to_panelka.zine.ui.Screen
+import com.to_panelka.zine.ui.Screens
 import com.to_panelka.zine.util.Content
 import com.to_panelka.zine.util.asContent
 
@@ -21,10 +21,10 @@ class RootComponent(
         childFactory = ::createChild
     )
     val routerState = router.state
-    val screen = Screen.values().toList()
+    val screens = Screens.values().toList()
     val currentScreen = mutableStateOf("Schedule")
 
-    fun onClickRail(name: String) {
+    fun onClickBar(name: String) {
         currentScreen.value = name
         when (name) {
             "Profile" -> {
