@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetpack.Children
@@ -33,7 +34,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun RootUI(component: RootComponent) {
 
-    Scaffold(bottomBar = {
+    Scaffold(
+        bottomBar = {
         NavigationBar(
             containerColor = MaterialTheme.colorScheme.inverseOnSurface
         ) {
@@ -58,10 +60,10 @@ fun RootUI(component: RootComponent) {
                 )
             }
         }
-    }) { it ->
+    }) { padding ->
         Children(
             routerState = component.routerState,
-            modifier = Modifier.padding(it)
+            modifier = Modifier.padding(padding)
         ) { child ->
             child.instance()
         }

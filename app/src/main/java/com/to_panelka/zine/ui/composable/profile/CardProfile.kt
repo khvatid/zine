@@ -1,38 +1,74 @@
 package com.to_panelka.zine.ui.composable.profile
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
+import android.content.res.Configuration.UI_MODE_NIGHT_MASK
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.to_panelka.zine.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardProfile(){
-    Card() {
-        Row() {
-            Column() {
-                Text(text = "Имя Фамилия")
-                Text(text = "Почта")
+fun CardProfile() {
+    Card(
+        modifier = Modifier.padding(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(
+                modifier = Modifier.weight(3.0f)
+            ) {
+                Text(
+                    text = "Имя Фамилия",
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
+                )
+                Text(
+                    text = "Почта",
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 0.dp)
+                )
             }
-            Column() {
+            Column(
+                modifier = Modifier.weight(1f),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 AsyncImage(
-                    model = "https://example.com/image.jpg",
+                    model = "https://sun9-11.userapi.com/s/v1/ig2/dDF9clyh8LhRm1IqfyzNU_F69jNnqFxHevLrLuR2Y9bFZ8k_4tT1-RpBW4XYTpEbzChNho3r1pjxtJ-3_SUtoU8-.jpg?size=908x1018&quality=96&type=album",
                     contentDescription = null,
-                    placeholder = painterResource(id = R.drawable.ic_launcher_foreground))
+                    placeholder = painterResource(id = R.drawable.ic_launcher_background),
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .clip(RoundedCornerShape(8.dp)).size(100.dp)
+                )
+                ElevatedButton(onClick = { /*TODO*/ }) {
+                    Text(text = "Edit")
+                }
             }
         }
     }
 }
 
 @Composable
-@Preview
-private fun PrevCard(){
+@Preview(
+    showBackground = true,
+
+)
+private fun PrevCard() {
     CardProfile()
 }
