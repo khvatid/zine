@@ -9,6 +9,7 @@ import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.to_panelka.zine.ui.Screens
+import com.to_panelka.zine.ui.composable.profile.ProfileUI
 import com.to_panelka.zine.util.Content
 import com.to_panelka.zine.util.asContent
 
@@ -53,7 +54,7 @@ class RootComponent(
             key = "Profile",
             lifecycle = LifecycleRegistry()
         )
-    ).asContent {  }
+    ).asContent {  ProfileUI(component = it)}
     private fun schedule(): Content = ScheduleComponent(
         componentContext = childContext(
             key = "Schedule",

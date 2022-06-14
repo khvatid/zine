@@ -14,8 +14,6 @@ import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetpack.Children
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.to_panelka.zine.components.RootComponent
-import com.to_panelka.zine.repository.models.Profile
-import com.to_panelka.zine.ui.composable.ProfileCard
 import com.to_panelka.zine.ui.theme.ZineTheme
 
 class MainActivity : ComponentActivity() {
@@ -67,8 +65,5 @@ fun RootUI(component: RootComponent) {
         ) { child ->
             child.instance()
         }
-
     }
-
-
 }
