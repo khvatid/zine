@@ -7,6 +7,7 @@ class ProfileComponent(
     componentContext: ComponentContext
 ) : ComponentContext by componentContext {
 
+    val listSettings = mutableListOf("Создать расписание","Статистика","Настройки","Импортировать расписание","Экспортировать расписание")
 
 
 

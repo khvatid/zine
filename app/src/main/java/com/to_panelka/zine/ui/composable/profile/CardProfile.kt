@@ -1,19 +1,12 @@
 package com.to_panelka.zine.ui.composable.profile
 
-import android.content.res.Configuration.UI_MODE_NIGHT_MASK
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,7 +28,7 @@ fun CardProfile() {
                 modifier = Modifier.weight(3.0f)
             ) {
                 Text(
-                    text = "Имя Фамилия",
+                    text = "Зырина Алина",
                     modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
                 )
                 Text(
@@ -53,7 +46,7 @@ fun CardProfile() {
                     placeholder = painterResource(id = R.drawable.ic_launcher_background),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .padding(10.dp)
+                        .padding(8.dp)
                         .clip(RoundedCornerShape(8.dp)).size(100.dp)
                 )
                 ElevatedButton(onClick = { /*TODO*/ }) {
