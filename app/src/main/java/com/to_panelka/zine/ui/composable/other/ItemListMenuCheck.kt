@@ -29,7 +29,6 @@ fun ItemListMenuCheck(text : String) {
             text = text,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 20.dp)
         )
-
         Checkbox(checked = check, onCheckedChange = {check = it})
     }
 }

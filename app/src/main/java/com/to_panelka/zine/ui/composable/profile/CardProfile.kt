@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.to_panelka.zine.R
+import com.to_panelka.zine.ui.theme.ZineTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +48,8 @@ fun CardProfile() {
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
                         .padding(8.dp)
-                        .clip(RoundedCornerShape(8.dp)).size(100.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .size(100.dp)
                 )
                 ElevatedButton(onClick = { /*TODO*/ }) {
                     Text(text = "Edit")
@@ -63,5 +65,7 @@ fun CardProfile() {
 
 )
 private fun PrevCard() {
-    CardProfile()
+    ZineTheme(darkTheme = true) {
+        CardProfile()
+    }
 }

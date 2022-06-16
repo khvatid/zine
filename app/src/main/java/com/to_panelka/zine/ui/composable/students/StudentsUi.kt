@@ -1,4 +1,9 @@
 package com.to_panelka.zine.ui.composable.students
 
-class StudentsUi {
+import androidx.compose.runtime.Composable
+
+
+@Composable
+fun StudentsUi() {
+
 }

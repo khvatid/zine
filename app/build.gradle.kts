@@ -55,29 +55,30 @@ android {
 dependencies {
 
 
+
     //Jetpack Compose
     val composeUiVersion = "1.2.0-beta03"
     implementation ("androidx.compose.ui:ui:$composeUiVersion")
     implementation ("androidx.compose.ui:ui-tooling-preview:$composeUiVersion")
+    implementation("androidx.navigation:navigation-compose:2.4.2")
     debugImplementation ("androidx.compose.ui:ui-tooling:$composeUiVersion")
     debugImplementation ("androidx.compose.ui:ui-test-manifest:$composeUiVersion")
     androidTestImplementation ("androidx.compose.ui:ui-test-junit4:$composeUiVersion")
+
 
     //Material You
     val material3Version = "1.0.0-alpha13"
     implementation ("androidx.compose.material3:material3:$material3Version")
 
-    //Decompose
-    val decomposeVersion = "0.6.0"
-    implementation("com.arkivanov.decompose:decompose:$decomposeVersion")
-    implementation("com.arkivanov.decompose:extensions-compose-jetpack:$decomposeVersion")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.1.0")
 
     //Lifecycle
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
     implementation ("androidx.activity:activity-compose:1.4.0")
+
 
     //Android
     implementation ("androidx.core:core-ktx:1.8.0")
