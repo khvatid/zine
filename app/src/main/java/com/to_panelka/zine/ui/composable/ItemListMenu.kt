@@ -1,4 +1,4 @@
-package com.to_panelka.zine.ui.composable.other
+package com.to_panelka.zine.ui.composable
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -10,11 +10,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ItemListMenu(text: String, onClick: () -> Unit) {
+fun ItemListMenu(text: String, onClick: (String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
+            .clickable(onClick = {onClick(text)}),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -30,6 +30,5 @@ fun ItemListMenu(text: String, onClick: () -> Unit) {
     showBackground = true
 )
 private fun Prev() {
-
-    ItemListMenu("Выгрузить расписание") {}
+    ItemListMenu("Хваталов Дмитрий Иванович") {}
 }

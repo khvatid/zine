@@ -1,4 +1,4 @@
-package com.to_panelka.zine.ui.composable.schedule
+package com.to_panelka.zine.ui.composable
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

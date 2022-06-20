@@ -1,4 +1,4 @@
-package com.to_panelka.zine.ui.composable.schedule
+package com.to_panelka.zine.screens.schedule
 
 import androidx.compose.runtime.Composable
 

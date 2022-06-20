@@ -1,4 +1,4 @@
-package com.to_panelka.zine.ui.composable.other
+package com.to_panelka.zine.ui.composable
 
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
@@ -12,11 +12,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.to_panelka.zine.navigation.NavBarItems
 
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun ZineBottomNavBar(navController: NavController) {
     BottomAppBar {
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry?.destination?.route
-
         NavBarItems.barItems.forEach {
             NavigationBarItem(
                 selected = currentRoute == it.route,
