@@ -7,10 +7,21 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.to_panelka.zine.repository.entities.StudentEntity
 import com.to_panelka.zine.ui.composable.ItemListMenu
 import com.to_panelka.zine.viewModels.StudentsViewModel
+
+
+
+@Composable
+fun StudentsUi(){
+    Box(modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center){
+        Text(text = "Студенты")
+    }
+}
 
 
 @OptIn(ExperimentalMaterial3Api::class)

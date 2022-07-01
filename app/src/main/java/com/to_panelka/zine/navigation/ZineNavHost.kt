@@ -1,36 +1,32 @@
 package com.to_panelka.zine.navigation
 
-import android.app.Application
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.NavType
+
+import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.to_panelka.zine.repository.entities.StudentEntity
+import com.to_panelka.zine.navigation.ZineScreen.*
+
 import com.to_panelka.zine.screens.profile.ProfileUI
 import com.to_panelka.zine.screens.schedule.ScheduleUi
-import com.to_panelka.zine.screens.students.SingleStudentScreen
-import com.to_panelka.zine.screens.students.AddStudentScreen
-import com.to_panelka.zine.screens.students.StudentsScreen
-import com.to_panelka.zine.viewModels.StudentsViewModel
-import com.to_panelka.zine.viewModels.factory.StudentsViewModelFactory
+
+import com.to_panelka.zine.screens.students.StudentsUi
 
 
-sealed class BottomNavRoutes(val route: String) {
+/*sealed class BottomNavRoutes(val route: String) {
     object Students : BottomNavRoutes("students")
     object Schedule : BottomNavRoutes("schedule")
     object Profile : BottomNavRoutes("profile")
-}
+}*/
 
-sealed class GlobalNavRoutes(val route: String) {
+/*sealed class GlobalNavRoutes(val route: String) {
     object Add : GlobalNavRoutes("add")
-}
+}*/
+
+
 
 
 @Composable
@@ -42,10 +38,37 @@ fun ZineNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = BottomNavRoutes.Schedule.route,
+        startDestination = Schedule.name,
     ) {
+        navigation(startDestination = "${Students.name}/list", route = Students.name) {
+            composable(route = "${Students.name}/list") { StudentsUi() }
+            composable(route = "${Students.name}/{user}",
+                arguments = listOf(navArgument("user") {
+                    type = NavType.StringType
+                })
+            ) {}
+            composable(route = "create") {}
+        }
 
-        composable(BottomNavRoutes.Students.route) {
+        navigation(startDestination = "${Schedule.name}/current", route = Schedule.name) {
+            composable(route = "${Schedule.name}/current") { ScheduleUi() }
+            composable(route = "${Schedule.name}/{lesson}",
+                arguments = listOf(navArgument("lesson") {
+                    type = NavType.StringType
+                })
+            ) {}
+            composable(route = "next") {}
+            composable(route = "prev") {}
+        }
+
+        navigation(startDestination = "${Profile.name}/menu", route = Profile.name) {
+            composable(route = "${Profile.name}/menu") { ProfileUI() }
+            composable(route = "${Profile.name}/edit") {}
+        }
+
+
+        //deprecated
+        /*composable(BottomNavRoutes.Students.route) {
             owner?.let {
                 val viewModel: StudentsViewModel = viewModel(
                     it,
@@ -102,13 +125,13 @@ fun ZineNavHost(
             }
         }
         composable(BottomNavRoutes.Schedule.route) { ScheduleUi() }
-        composable(BottomNavRoutes.Profile.route) { ProfileUI() }
+        composable(BottomNavRoutes.Profile.route) { ProfileUI() }*/
     }
 }
 
-private fun navigateToSingleStudent(
+/*private fun navigateToSingleStudent(
     navController: NavController,
     studentName: String
 ) {
     navController.navigate("${BottomNavRoutes.Students.route}/$studentName")
-}
+}*/
