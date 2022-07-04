@@ -28,7 +28,7 @@ enum class ZineScreen(
                 Schedule.name -> Schedule
                 Profile.name -> Profile
                 null -> Schedule
-                else -> Schedule
+                else -> throw IllegalAccessException("Route $route is not recognized")
             }
     }
 }
