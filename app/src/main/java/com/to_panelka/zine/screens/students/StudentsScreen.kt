@@ -38,49 +38,8 @@ fun StudentsScreen(
             }
         }
     }
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Студенты")
-    }
 
 }
-
-
-
-@Composable
-fun SingleStudentScreen(
-    student: String,
-    onDeleteClick: () -> Unit = {}
-) {
-    Column(
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text(
-            text = student,
-            style = MaterialTheme.typography.displayMedium
-        )
-        Button(onClick = onDeleteClick) {
-            Text(text = "Delete")
-        }
-    }
-}
-
-
-@Composable
-fun AddStudentScreen(
-    onAddClick: (String) -> Unit = {}
-) {
-    var name by remember { mutableStateOf("") }
-    Column {
-        TextField(value = name, onValueChange = { name = it })
-        Button(onClick = { onAddClick(name) }) {
-            Text(text = "Создать")
-        }
-    }
-}
-
 
 @Composable
 fun StudentTopBar(
@@ -94,6 +53,4 @@ fun StudentTopBar(
             }
         }
     )
-
-
 }

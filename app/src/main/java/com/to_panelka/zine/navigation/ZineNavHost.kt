@@ -16,7 +16,7 @@ import com.to_panelka.zine.repository.entities.StudentEntity
 
 import com.to_panelka.zine.screens.profile.ProfileUI
 import com.to_panelka.zine.screens.schedule.ScheduleUi
-import com.to_panelka.zine.screens.students.AddStudentScreen
+import com.to_panelka.zine.screens.students.CreateStudentScreen
 import com.to_panelka.zine.screens.students.SingleStudentScreen
 
 import com.to_panelka.zine.screens.students.StudentsScreen
@@ -70,6 +70,8 @@ fun ZineNavHost(
                     }
                 )
             }
+
+            //SINGLE STUDENT
             composable(
                 route = "${Students.name}/{user}",
                 arguments = listOf(navArgument("user") {
@@ -84,12 +86,20 @@ fun ZineNavHost(
                         StudentsViewModelFactory(LocalContext.current.applicationContext as Application)
                     )
                     viewModel.findStudent(name.toString())
-                    SingleStudentScreen(student = name.toString()) {
-                        viewModel.deleteStudent(name.toString())
-                        navController.popBackStack()
-                    }
+                    SingleStudentScreen(
+                        student = name.toString(),
+                        onDeleteClick = {
+                            viewModel.deleteStudent(name.toString())
+                            navController.popBackStack()
+                        },
+                        onBackClick = {
+                            navController.popBackStack()
+                        }
+                    )
                 }
             }
+
+            //CREATE STUDENT
             composable(route = "${Students.name}/create") {
                 owner?.let {
                     val viewModel: StudentsViewModel = viewModel(
@@ -97,11 +107,12 @@ fun ZineNavHost(
                         "StudentViewModel",
                         StudentsViewModelFactory(LocalContext.current.applicationContext as Application)
                     )
-                    AddStudentScreen(
-                        onAddClick = { name ->
+                    CreateStudentScreen(
+                        onCreateClick = { name ->
                             viewModel.insertStudent(StudentEntity(name))
                             navController.popBackStack()
-                        }
+                        },
+                        onBackClick = {navController.popBackStack()}
                     )
                 }
             }
