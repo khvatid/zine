@@ -10,11 +10,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ItemListMenu(text: String, onClick: (String) -> Unit) {
+fun ItemStudentList(text: String, onClick: (String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = {onClick(text)}),
+            .clickable(onClick = { onClick(text) }),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -22,13 +22,16 @@ fun ItemListMenu(text: String, onClick: (String) -> Unit) {
             text = text,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 20.dp)
         )
+
     }
 }
+
+
 
 @Composable
 @Preview(
     showBackground = true
 )
 private fun Prev() {
-    ItemListMenu("Хваталов Дмитрий Иванович") {}
+    ItemStudentList("Хваталов Дмитрий Иванович") {}
 }

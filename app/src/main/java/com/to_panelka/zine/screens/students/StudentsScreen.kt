@@ -7,9 +7,9 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.to_panelka.zine.repository.entities.StudentEntity
-import com.to_panelka.zine.ui.composable.ItemListMenu
+import com.to_panelka.zine.ui.composable.ItemStudentList
 import com.to_panelka.zine.viewModels.StudentsViewModel
 
 
@@ -22,26 +22,32 @@ fun StudentsScreen(
 ) {
     val allStudents by viewModel.allStudents.observeAsState(listOf())
     Scaffold(
-        floatingActionButton = {
-            LargeFloatingActionButton(onClick = onAddClick) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "Add"
-                )
-            }
+        topBar = {
+            StudentTopBar(
+                onAddClick = onAddClick
+            )
         }
     ) {
         LazyColumn(
             modifier = Modifier.padding(it)
         ) {
             allStudents.forEach {
-                item {
-                    ItemListMenu(text = it.name, onClick = onStudentClick)
+                item{
+                    ItemStudentList(text = it.name, onClick = onStudentClick)
                 }
             }
         }
     }
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text = "Студенты")
+    }
+
 }
+
+
 
 @Composable
 fun SingleStudentScreen(
@@ -73,4 +79,21 @@ fun AddStudentScreen(
             Text(text = "Создать")
         }
     }
+}
+
+
+@Composable
+fun StudentTopBar(
+    onAddClick: () -> Unit = {}
+) {
+    SmallTopAppBar(
+        title = {Text("Students")},
+        actions = {
+            IconButton(onClick = onAddClick) {
+                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add student")
+            }
+        }
+    )
+
+
 }
