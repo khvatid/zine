@@ -8,7 +8,7 @@ import com.to_panelka.zine.viewModels.ProfileViewModel
 
 class ProfileViewModelFactory(val application: Application): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        Log.i("VIEW MODEL:","Create ScheduleViewModel")
+        Log.i("VIEW MODEL:","Create ProfileViewModel")
         return ProfileViewModel(application) as T
     }
 }

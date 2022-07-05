@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.to_panelka.zine.navigation.ZineScreen.*
 import com.to_panelka.zine.database.entities.StudentEntity
+import com.to_panelka.zine.screens.profile.ProfileEditScreen
 
 import com.to_panelka.zine.screens.profile.ProfileUI
 import com.to_panelka.zine.screens.schedule.ScheduleUi
@@ -21,6 +22,7 @@ import com.to_panelka.zine.screens.students.SingleStudentScreen
 
 import com.to_panelka.zine.screens.students.StudentsScreen
 import com.to_panelka.zine.viewModels.StudentsViewModel
+import com.to_panelka.zine.viewModels.factory.ProfileViewModelFactory
 import com.to_panelka.zine.viewModels.factory.StudentsViewModelFactory
 
 
@@ -43,6 +45,7 @@ fun ZineNavHost(
     modifier: Modifier = Modifier
 ) {
     val owner = LocalViewModelStoreOwner.current
+    val application = LocalContext.current.applicationContext as Application
 
     NavHost(
         modifier = modifier,
@@ -58,7 +61,7 @@ fun ZineNavHost(
                     viewModel = viewModel(
                         viewModelStoreOwner = owner!!,
                         key = "StudentViewModel",
-                        factory = StudentsViewModelFactory(LocalContext.current.applicationContext as Application)
+                        factory = StudentsViewModelFactory(application)
                     ),
                     onAddClick = { navController.navigate("${Students.name}/create") },
                     onStudentClick = { name ->
@@ -82,7 +85,7 @@ fun ZineNavHost(
                     val viewModel: StudentsViewModel = viewModel(
                         vmsOwner,
                         "StudentViewModel",
-                        StudentsViewModelFactory(LocalContext.current.applicationContext as Application)
+                        StudentsViewModelFactory(application)
                     )
                     viewModel.findStudent(name.toString())
                     SingleStudentScreen(
@@ -104,7 +107,7 @@ fun ZineNavHost(
                     val viewModel: StudentsViewModel = viewModel(
                         it,
                         "StudentViewModel",
-                        StudentsViewModelFactory(LocalContext.current.applicationContext as Application)
+                        StudentsViewModelFactory(application)
                     )
                     CreateStudentScreen(
                         onCreateClick = { name ->
@@ -134,8 +137,24 @@ fun ZineNavHost(
         }
 
         navigation(startDestination = "${Profile.name}/menu", route = Profile.name) {
-            composable(route = "${Profile.name}/menu") { ProfileUI() }
-            composable(route = "${Profile.name}/edit") {}
+            composable(route = "${Profile.name}/menu") {
+                ProfileUI(
+                    viewModel = viewModel(
+                        viewModelStoreOwner = owner!!,
+                        key = "ProfileViewModel",
+                        factory = ProfileViewModelFactory(application)
+                    ),
+                    onEditClick = {navController.navigate("${Profile.name}/edit")}
+                ) }
+            composable(route = "${Profile.name}/edit") {
+                ProfileEditScreen(
+                    viewModel = viewModel(
+                        viewModelStoreOwner = owner!!,
+                        key = "ProfileViewModel",
+                        factory = ProfileViewModelFactory(application)
+                    )
+                )
+            }
         }
 
 

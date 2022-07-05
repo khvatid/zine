@@ -16,18 +16,21 @@ class ProfileViewModel(application: Application): ViewModel() {
         val zineDatabase = ZineDatabase.getInstance(application)
         val profileDao = zineDatabase.profileDao()
         repository = ProfileRepository(profileDao)
-        if (repository.profile.value == null)
-            repository.createProfile(ProfileEntity(fullName = "User Admin",null))
+
         profile = repository.profile
     }
 
-    fun updateProfile(){
-        repository.updateProfile(profile = profile.value!!)
+    fun updateProfile(profile: ProfileEntity){
+        repository.updateProfile(profile = profile)
     }
 
     fun resetProfile(){
         repository.deleteProfile(profile.value!!.fullName)
         repository.createProfile(ProfileEntity(fullName = "User Admin",null))
+    }
+
+    fun createProfile(){
+        repository.createProfile(ProfileEntity(fullName = "User Admin", null))
     }
 
 }
