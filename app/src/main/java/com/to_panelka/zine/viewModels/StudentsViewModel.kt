@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.to_panelka.zine.repository.StudentsRepository
-import com.to_panelka.zine.repository.ZineDatabase
-import com.to_panelka.zine.repository.entities.StudentEntity
+import com.to_panelka.zine.database.repository.StudentsRepository
+import com.to_panelka.zine.database.ZineDatabase
+import com.to_panelka.zine.database.entities.StudentEntity
 
 class StudentsViewModel(application: Application): ViewModel() {
     val allStudents: LiveData<List<StudentEntity>>

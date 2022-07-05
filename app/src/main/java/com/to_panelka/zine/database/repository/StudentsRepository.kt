@@ -1,9 +1,9 @@
-package com.to_panelka.zine.repository
+package com.to_panelka.zine.database.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.to_panelka.zine.repository.dao.StudentDao
-import com.to_panelka.zine.repository.entities.StudentEntity
+import com.to_panelka.zine.database.dao.StudentDao
+import com.to_panelka.zine.database.entities.StudentEntity
 import kotlinx.coroutines.*
 
 class StudentsRepository(private val studentDao: StudentDao) {

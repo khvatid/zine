@@ -1,4 +1,4 @@
-package com.to_panelka.zine.repository.entities
+package com.to_panelka.zine.database.entities
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

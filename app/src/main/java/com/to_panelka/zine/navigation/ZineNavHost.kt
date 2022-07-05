@@ -12,7 +12,7 @@ import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.to_panelka.zine.navigation.ZineScreen.*
-import com.to_panelka.zine.repository.entities.StudentEntity
+import com.to_panelka.zine.database.entities.StudentEntity
 
 import com.to_panelka.zine.screens.profile.ProfileUI
 import com.to_panelka.zine.screens.schedule.ScheduleUi
@@ -50,8 +50,7 @@ fun ZineNavHost(
         startDestination = Schedule.name,
     ) {
         navigation(
-            startDestination = "${Students.name}/list",
-            route = Students.name
+            startDestination = "${Students.name}/list", route = Students.name
         ) {
 
             composable(route = "${Students.name}/list") {
