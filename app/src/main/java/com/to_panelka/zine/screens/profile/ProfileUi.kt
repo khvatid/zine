@@ -20,6 +20,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.to_panelka.zine.R
 import com.to_panelka.zine.viewModels.ProfileViewModel
+import java.io.File
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,7 +42,7 @@ fun ProfileUI(
                 Row() {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
-                            .data("content://com.android.providers.media.documents/document/image%3A75839")
+                            .data(profile!!.photo)
                             .crossfade(true)
                             .build(),
                         placeholder = painterResource(id = R.drawable.ic_launcher_foreground),
@@ -52,7 +53,7 @@ fun ProfileUI(
                             .size(100.dp)
                     )
                     Spacer(modifier = Modifier.weight(1f))
-                    Text(text = profile!!.fullName)
+                    Text(text = "${profile!!.surname} ${profile!!.name}")
                 }
                 Button(onClick = onEditClick) {
                     Text(text = "Edit")

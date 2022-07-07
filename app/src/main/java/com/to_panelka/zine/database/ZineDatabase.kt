@@ -10,7 +10,7 @@ import com.to_panelka.zine.database.entities.ProfileEntity
 import com.to_panelka.zine.database.entities.StudentEntity
 
 
-@Database(entities = [(StudentEntity::class),(ProfileEntity::class)], version = 2)
+@Database(entities = [(StudentEntity::class),(ProfileEntity::class)], version = 3)
 abstract class ZineDatabase : RoomDatabase() {
 
     abstract fun studentDao(): StudentDao

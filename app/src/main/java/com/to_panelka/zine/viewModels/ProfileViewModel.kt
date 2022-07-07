@@ -1,6 +1,7 @@
 package com.to_panelka.zine.viewModels
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.to_panelka.zine.database.ZineDatabase
@@ -12,6 +13,7 @@ class ProfileViewModel(application: Application): ViewModel() {
 
     val profile : LiveData<ProfileEntity>
 
+
     init {
         val zineDatabase = ZineDatabase.getInstance(application)
         val profileDao = zineDatabase.profileDao()
@@ -20,17 +22,19 @@ class ProfileViewModel(application: Application): ViewModel() {
         profile = repository.profile
     }
 
-    fun updateProfile(profile: ProfileEntity){
-        repository.updateProfile(profile = profile)
+    fun updateProfile(profileUp: ProfileEntity){
+        repository.updateProfile(profile = profileUp)
+        Log.i("UPDATE PROFILE  :",profileUp.toString())
     }
 
     fun resetProfile(){
-        repository.deleteProfile(profile.value!!.fullName)
-        repository.createProfile(ProfileEntity(fullName = "User Admin",null))
+        repository.deleteProfile(profile.value!!.id)
+        repository.createProfile(ProfileEntity())
     }
 
     fun createProfile(){
-        repository.createProfile(ProfileEntity(fullName = "User Admin", null))
+        repository.createProfile(ProfileEntity())
     }
+
 
 }

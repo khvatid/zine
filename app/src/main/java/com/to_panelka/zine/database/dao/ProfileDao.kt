@@ -17,8 +17,8 @@ interface ProfileDao {
     @Query("SELECT * FROM profile")
     fun getProfile(): LiveData<ProfileEntity>
 
-    @Query("DELETE FROM profile WHERE fullName= :fullName")
-    fun deleteProfile(fullName:String)
+    @Query("DELETE FROM profile WHERE id = :id")
+    fun deleteProfile(id:Int)
 
 
 

@@ -26,9 +26,9 @@ class ProfileRepository(private val profileDao: ProfileDao) {
         }
     }
 
-    fun deleteProfile (fullName: String){
+    fun deleteProfile (id: Int){
         coroutineScope.launch(Dispatchers.IO){
-            profileDao.deleteProfile(fullName = fullName)
+            profileDao.deleteProfile(id = id)
         }
     }
 

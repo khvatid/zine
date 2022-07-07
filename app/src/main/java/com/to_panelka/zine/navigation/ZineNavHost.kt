@@ -152,7 +152,8 @@ fun ZineNavHost(
                         viewModelStoreOwner = owner!!,
                         key = "ProfileViewModel",
                         factory = ProfileViewModelFactory(application)
-                    )
+                    ),
+                    onBackClick = {navController.popBackStack()}
                 )
             }
         }
