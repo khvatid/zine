@@ -27,11 +27,13 @@ import java.io.File
 @Composable
 fun ProfileUI(
     viewModel: ProfileViewModel,
-    onEditClick : ()->Unit = {}) {
+    onEditClick : ()->Unit = {},
+    onCreateSchedule : ()->Unit = {}) {
 
     val profile by viewModel.profile.observeAsState()
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+
     ) {
         if (profile == null) {
             Button(onClick = { viewModel.createProfile() }) {
@@ -61,6 +63,17 @@ fun ProfileUI(
 
             }
         }
+        Divider(
+            Modifier
+                .padding(10.dp)
+                .fillMaxWidth()
+                .height(2.dp))
+
+        Button(onClick = onCreateSchedule) {
+            Text("create schedule")
+        }
+
+
 
     }
 
