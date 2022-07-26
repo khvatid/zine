@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.to_panelka.zine.navigation.ZineScreen.*
 import com.to_panelka.zine.database.entities.StudentEntity
+import com.to_panelka.zine.screens.profile.CreateScheduleScreen
 import com.to_panelka.zine.screens.profile.ProfileEditScreen
 
 import com.to_panelka.zine.screens.profile.ProfileUI
@@ -23,6 +24,7 @@ import com.to_panelka.zine.screens.students.SingleStudentScreen
 import com.to_panelka.zine.screens.students.StudentsScreen
 import com.to_panelka.zine.viewModels.StudentsViewModel
 import com.to_panelka.zine.viewModels.factory.ProfileViewModelFactory
+import com.to_panelka.zine.viewModels.factory.ScheduleViewModelFactory
 import com.to_panelka.zine.viewModels.factory.StudentsViewModelFactory
 
 
@@ -144,7 +146,8 @@ fun ZineNavHost(
                         key = "ProfileViewModel",
                         factory = ProfileViewModelFactory(application)
                     ),
-                    onEditClick = {navController.navigate("${Profile.name}/edit")}
+                    onEditClick = {navController.navigate("${Profile.name}/edit")},
+                    onCreateSchedule = {navController.navigate("${Profile.name}/schedule")}
                 ) }
             composable(route = "${Profile.name}/edit") {
                 ProfileEditScreen(
@@ -155,6 +158,13 @@ fun ZineNavHost(
                     ),
                     onBackClick = {navController.popBackStack()}
                 )
+            }
+            composable(route = "${Profile.name}/schedule"){
+                CreateScheduleScreen(viewModel = viewModel(
+                    viewModelStoreOwner = owner!!,
+                    key = "ScheduleViewModel",
+                    factory = ScheduleViewModelFactory(application)
+                ))
             }
         }
 
