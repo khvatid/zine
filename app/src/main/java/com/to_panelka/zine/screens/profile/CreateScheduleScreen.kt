@@ -14,45 +14,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.text.input.ImeAction
 import com.to_panelka.zine.database.entities.SubjectEntity
+import com.to_panelka.zine.screens.schedule.EditScheduleCard
 import com.to_panelka.zine.viewModels.ScheduleViewModel
 
 @Composable
 fun CreateScheduleScreen(viewModel: ScheduleViewModel) {
     val allSubject by viewModel.allSubject.observeAsState(listOf())
-    var isNewSubject by remember {
-        mutableStateOf(false)
-    }
 
     Column(modifier = Modifier.fillMaxSize()) {
+        EditScheduleCard(
+            createNewSubject = {viewModel.insertSubject(it)},
+            subjectList = allSubject
+        )
         LazyColumn {
             allSubject.forEach { subject ->
                 item {
                     Text(text = subject.title)
                 }
             }
-            item {
-                if (isNewSubject) {
-                    var subject by remember {
-                        mutableStateOf("")
-                    }
-                    OutlinedTextField(
-                        value = subject,
-                        onValueChange = { subject = it },
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-                        keyboardActions = KeyboardActions(onDone = {
-                            viewModel.insertSubject(
-                                SubjectEntity(title = subject)
-                            )
-                            isNewSubject = false
-                        }),
-                    )
-                } else {
-                    Button(onClick = { isNewSubject = true }) {
-                        Text(text = "Add subject")
-                    }
-                }
 
-            }
         }
     }
 }
