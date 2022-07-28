@@ -73,8 +73,7 @@ fun EditScheduleCard(
     ) {
         Row {
             Text(text = "Time: ")
-            WheelPicker()
-            WheelPicker()
+            WheelPicker(list = (0..23).toList())
         }
         Row() {
             Text(text = "Week")

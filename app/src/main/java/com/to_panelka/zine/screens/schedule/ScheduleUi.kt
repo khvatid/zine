@@ -13,6 +13,6 @@ import com.to_panelka.zine.ui.composable.WheelPicker
 fun ScheduleUi(){
     Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center){
-        WheelPicker()
+        WheelPicker(list = (0..23).toList())
     }
 }
